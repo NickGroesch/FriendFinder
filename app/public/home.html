@@ -13,6 +13,12 @@
 
     <!-- Custom styles for this template
     <link href="narrow-jumbotron.css" rel="stylesheet"> -->
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+ 
+
   </head>
 
   <body>
@@ -40,4 +46,30 @@
   
 
 </body>
+<script>
+function getAllFriends() {
+  // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+  $.ajax({ url: "/api/friends", method: "GET" })
+    .then(function(allFriends) {
+
+      console.log(allFriends);
+      console.log("------------------------------------");
+
+      allFriends.forEach(v=>{
+        var friendList = $(".friends");
+        
+        var newFriend = $("<li class='list-group-item mt-4'>");
+
+          newFriend.append(
+          // $("<h2>").text("ID: " + newFriend[i].id),
+          $("<h2>").text("Name: " + v.name),
+          $("<h2>").text("Image link: " + v.image),
+        );
+
+        friendList.append(newFriend);
+      })
+    });
+}
+getAllFriends()
+</script>
 </html>

@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
   port: 8889,
   user: "root",
   password: "root",
-  database: "friendFinder_db"
+  database: "ff_db"
 });
 console.log("connected to mysql");
 
@@ -19,14 +19,16 @@ console.log("connected to mysql");
 //   });
 
 // // Routing
-// module.exports = function(app) {
-//   app.get("/api/friends", (req, res) =>
-//     // get all profiles
-//   );
-//   app.post("/api/friends", (req, res) =>
-//     // take and save the user's survey
-//     // keep the code as csv string
-
+module.exports = function(app) {
+  app.get("/api/friends", (req, res) =>
+    // get all profiles
+    connection.query("select * from profiles", (err, sult) => res.json(sult))
+  );
+};
+// app.post("/api/friends", (req, res) => {
+//   // take and save the user's survey
+//   // keep the code as csv string
+// });
 //     // evaluate the survey to show user the best friend(s)
 // function(evaluateMatch){
 // const bestMatch={
