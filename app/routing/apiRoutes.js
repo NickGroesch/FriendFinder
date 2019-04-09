@@ -22,29 +22,29 @@ module.exports = function(app) {
     var surveyUser = req.body;
     var userScore = surveyUser.scores.join("");
     console.log("userScore", userScore);
-
+    console.log(req.body.scores.toString());
     // connection.query(
     //   "Insert into profiles (name, image, scores) values (?,?,?)",
     //   [req.body.name, req.body.image, req.body.scores.toString()]
     // );
 
-    var potentialFriends = {};
+    var potentialFriends = [];
     connection.query("select * from profiles", (err, sult) => {
       // console.log("all from profiles", sult);
-      sult.forEach((v, i) => (potentialFriends[i] = v));
+      sult.forEach((v, i) => potentialFriends.push(v));
       console.log(potentialFriends);
 
       for (prop in potentialFriends) {
         var difference = 0;
         var compScore = potentialFriends[prop].scores.split(",").join("");
-        console.log("compScore", compScore);
+        // console.log("compScore", compScore);
         for (i = 0; i < compScore.length; i++) {
           difference += Math.abs(
             parseInt(compScore[i]) - parseInt(userScore[i])
           );
         }
         potentialFriends[prop].differential = difference;
-        console.log(potentialFriends[prop].differential);
+        // console.log(potentialFriends[prop].differential);
       }
       console.log(potentialFriends);
       sortedFriends = [];
