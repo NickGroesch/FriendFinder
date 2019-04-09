@@ -7,7 +7,7 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <title>Friend Finder Survey</title>
-
+<!-- link to bootstrap cdn instead of these wierd ones -->
     <!-- Bootstrap core CSS -->
     <link href="../../css/editor.css" rel="stylesheet">
 
@@ -27,11 +27,12 @@
       <div class="jumbotron">
         <h1 class="display-3"><b>Friend Finder&nbsp;</b></h1>
         <p class="lead">Cras justo odio, Find yourself some friends.</p>
-        <p><a id="find" class="btn btn-lg btn-success" href="#" role="button">See all Friends</a></p>
+        <p><a id="find" class="btn btn-lg btn-success" href="/home" role="button">See all Friends</a></p>
       </div>
 
       <div class="form">
-        <form class="form-horizontal">
+        <!-- <form class="form-horizontal" action="/api/friends" method="POST"> -->
+        <form class="form-horizontal" >
           <fieldset>
           
           <!-- Form Name -->
@@ -41,14 +42,14 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Name</label>  
             <div class="col-md-4">
-            <input id="textinput" name="textinput" type="text" placeholder="This is your name" class="form-control input-md">
+            <input id="name" name="textinput" type="text" placeholder="This is your name" class="form-control input-md">
             </div>
           </div>
           <!-- Text input-->
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Photo Url</label>  
             <div class="col-md-4">
-            <input id="textinput" name="textinput" type="text" placeholder="Url link here" class="form-control input-md">
+            <input id="photoUrl" name="textinput" type="text" placeholder="Url link here" class="form-control input-md">
             </div>
           </div>
           
@@ -317,7 +318,7 @@
 
 <div class="form-group">
   <div class="col-md-4">
-    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Find Friend</button>
+    <button type='submit' id="singlebutton" name="singlebutton" class="btn btn-primary">Find Friend</button>
   </div>
 </div>
 
@@ -336,9 +337,27 @@
 
 </body>
 <script>
-$("singlebutton").on("click", ()=>{
-  $.ajax({ url: "/api/friends", method: "POST" }).then(function() {
-      res.redirect("/")
+$("form").on("submit", (event)=>{
+event.preventDefault()
+console.log(event)
+scores=[]
+for (var i = 1; i< 11; i++){
+  scores.push($(`input[name=${i}radios]:checked`).val())
+}
+// //scores.push($("input[type='radio']:checked").val())
+console.log(scores)//$(".10radios").val());
+
+var newFriend = {
+      name: $("#name").val().trim(),
+      image: $("#photoUrl").val().trim(),
+      scores: scores
+    };
+
+
+  $.ajax({ url: "/api/friends", method: "POST" , data:newFriend}).then(function() {
+      // res.redirect("/")
+      console.log("success");
+      
     });
 })
 </script>

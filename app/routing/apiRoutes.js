@@ -24,11 +24,34 @@ module.exports = function(app) {
     // get all profiles
     connection.query("select * from profiles", (err, sult) => res.json(sult))
   );
+  app.post("/api/friends", (req, res) => {
+    console.log(req.body);
+
+    connection.query(
+      "Insert into profiles (name, image, scores) values (?,?,?)",
+      [req.body.name, req.body.image, req.body.scores.toString()]
+    );
+    console.log(req.params);
+    var potentialFriends = {};
+    connection.query("select * from profiles", (err, sult) => {
+      //res.json(sult)
+
+      sult.forEach(element, index => {
+        var dif = 0;
+        var scores = element.scores.split(",");
+        scores.forEach(item, i => {
+          if (item[i] != req.body.scores[i]) {
+            dif++;
+          }
+        });
+        potentialFriends[dif] = element;
+      });
+    });
+    // object get keys loop in to sort difference (represented the  key)
+    // take and save the user's survey
+    // keep the code as csv string
+  });
 };
-// app.post("/api/friends", (req, res) => {
-//   // take and save the user's survey
-//   // keep the code as csv string
-// });
 //     // evaluate the survey to show user the best friend(s)
 // function(evaluateMatch){
 // const bestMatch={
