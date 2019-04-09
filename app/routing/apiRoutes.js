@@ -21,76 +21,33 @@ module.exports = function(app) {
   app.post("/api/friends", (req, res) => {
     var surveyUser = req.body;
     var userScore = surveyUser.scores.join("");
-    console.log("userScore", userScore);
-    console.log(req.body.scores.toString());
-    // connection.query(
-    //   "Insert into profiles (name, image, scores) values (?,?,?)",
-    //   [req.body.name, req.body.image, req.body.scores.toString()]
-    // );
-
+    // this array will hold all of the potential friend objects, and when we compare scores we will add a property to sort them
+    // (some of the code below is not dry because I had been trying an object of objects but settled on an array of objects for the sort)
     var potentialFriends = [];
     connection.query("select * from profiles", (err, sult) => {
-      // console.log("all from profiles", sult);
+      // push in all the friends from the database
       sult.forEach((v, i) => potentialFriends.push(v));
-      console.log(potentialFriends);
-
       for (prop in potentialFriends) {
         var difference = 0;
         var compScore = potentialFriends[prop].scores.split(",").join("");
-        // console.log("compScore", compScore);
         for (i = 0; i < compScore.length; i++) {
           difference += Math.abs(
             parseInt(compScore[i]) - parseInt(userScore[i])
           );
         }
         potentialFriends[prop].differential = difference;
-        // console.log(potentialFriends[prop].differential);
       }
-      console.log(potentialFriends);
       sortedFriends = [];
-      // for (x in potentialFriends){
       sortedFriends = potentialFriends.sort((a, b) => {
         return a.differential - b.differential;
       });
-      console.log(sortedFriends);
+      // respond to the page with friends ordered by compatibility
+      res.json(sortedFriends);
+      // now that the profiles have been assessed we will add the new user to database
+      connection.query(
+        "Insert into profiles (name, image, scores) values (?,?,?)",
+        [req.body.name, req.body.image, req.body.scores.toString()]
+      );
     });
   });
 };
-
-// sult.forEach(element, index => {
-//   var dif = 0;
-//   var scores = element.scores.split(",");
-//   scores.forEach(item, i => {
-//     if (item[i] != req.body.scores[i]) {
-//       dif++;
-//     }
-//   });
-//   potentialFriends[dif] = element;
-//   });
-// });
-// object get keys loop in to sort difference (represented the  key)
-// take and save the user's survey
-// keep the code as csv string
-
-//     // evaluate the survey to show user the best friend(s)
-// function(evaluateMatch){
-// const bestMatch={
-//   name:"",
-//   photo:"url",
-//   friendDifference: 42
-// }
-// // for i loop over the friends{
-//   // total difference=0
-//   // currentfriend=friends[i]
-//   //     for j loop over currentfriend.scores{
-//     //      compare the userdata.scrores[j] with currentfriend.scores[j]
-//     //        totaldifference +=  Math.abs(parseInt(userscore)-parseInt(friendscrore))
-//   // if(totaldifference<=bestmatch.friendDifference){
-// // bestMatch=currentFriend
-//   // }
-// // }
-// return bestMatch
-// }
-//     // send the bestest match
-//   );
-// };

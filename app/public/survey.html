@@ -10,56 +10,47 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <style>*{text-align: center} 
     /* form{ display: inline-block} */
-    /* .centered {
+     .centered {
   display: block;
   margin-right: auto;
-  margin-left: auto;} */
- /* input{margin:auto} */
+  margin-left: auto;}  
+  input{margin:auto}  
   </style>
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
   </head>
-
   <body>
 
     <div class="container">
       
-
       <div class="jumbotron">
         <h1 class="display-3"><b>Friend Finder&nbsp;</b></h1>
         <p class="lead">Cras justo odio, Find yourself some friends.</p>
         <p><a id="find" class="btn btn-lg btn-success" href="/home" role="button">See all Friends</a></p>
       </div>
 
+      <!-- This is the Form -->
       <div class="form">
-        <!-- <form class="form-horizontal" action="/api/friends" method="POST"> -->
         <form class="form-horizontal" >
           <fieldset>
-          
-          <!-- Form Name -->
           <legend>Friend Finder Survey</legend>
-          
-          <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">Name</label>  
-            <div class="col-md-4">
+            <label class="col control-label" for="textinput">Name</label>  
+            <div class="col">
             <input id="name" name="textinput" type="text" placeholder="This is your name" class="form-control input-md">
             </div>
           </div>
-          <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">Photo Url</label>  
-            <div class="col-md-4">
+            <label class="col control-label" for="textinput">Photo Url</label>  
+            <div class="col">
             <input id="photoUrl" name="textinput" type="text" placeholder="Url link here" class="form-control input-md">
             </div>
           </div>
-          
-          <!-- Multiple Radios (inline) -->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="1radios">Question 1</label>
-            <div class="col-md-4"> 
+          <div class="form-group align-self-center">
+            <label class="col control-label" for="1radios">Question 1</label>
+            <div class="col "> 
               <label class="radio-inline" for="1radios-0">
                 <input type="radio" name="1radios" id="1radios-0" value="1" checked="checked">
                 1
@@ -82,11 +73,9 @@
               </label>
             </div>
           </div>
-         
-          <!-- Multiple Radios (inline) -->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="2radios">Question 2</label>
-            <div class="col-md-4"> 
+            <label class="col control-label" for="2radios">Question 2</label>
+            <div class="col"> 
               <label class="radio-inline" for="2radios-0">
                 <input type="radio" name="2radios" id="2radios-0" value="1" checked="checked">
                 1
@@ -109,10 +98,9 @@
               </label>
             </div>
           </div>
-          <!-- Multiple Radios (inline) -->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="3radios">Question 3</label>
-            <div class="col-md-4"> 
+            <label class="col control-label" for="3radios">Question 3</label>
+            <div class="col"> 
               <label class="radio-inline" for="3radios-0">
                 <input type="radio" name="3radios" id="3radios-0" value="1" checked="checked">
                 1
@@ -135,10 +123,9 @@
               </label>
             </div>
           </div>
-          <!-- Multiple Radios (inline) -->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="4radios">Question 4</label>
-            <div class="col-md-4"> 
+            <label class="col control-label" for="4radios">Question 4</label>
+            <div class="col"> 
               <label class="radio-inline" for="4radios-0">
                 <input type="radio" name="4radios" id="4radios-0" value="1" checked="checked">
                 1
@@ -161,10 +148,9 @@
               </label>
             </div>
           </div>
-          <!-- Multiple Radios (inline) -->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="5radios">Question 5</label>
-            <div class="col-md-4"> 
+            <label class="col control-label" for="5radios">Question 5</label>
+            <div class="col"> 
               <label class="radio-inline" for="5radios-0">
                 <input type="radio" name="5radios" id="5radios-0" value="1" checked="checked">
                 1
@@ -187,10 +173,9 @@
               </label>
             </div>
           </div>
-          <!-- Multiple Radios (inline) -->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="6radios">Question 6</label>
-            <div class="col-md-4"> 
+            <label class="col control-label" for="6radios">Question 6</label>
+            <div class="col"> 
               <label class="radio-inline" for="6radios-0">
                 <input type="radio" name="6radios" id="6radios-0" value="1" checked="checked">
                 1
@@ -213,10 +198,9 @@
               </label>
             </div>
           </div>
-          <!-- Multiple Radios (inline) -->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="7radios">Question 7</label>
-            <div class="col-md-4"> 
+            <label class="col control-label" for="7radios">Question 7</label>
+            <div class="col"> 
               <label class="radio-inline" for="7radios-0">
                 <input type="radio" name="7radios" id="7radios-0" value="1" checked="checked">
                 1
@@ -239,10 +223,9 @@
               </label>
             </div>
           </div>
-          <!-- Multiple Radios (inline) -->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="8radios">Question 8</label>
-            <div class="col-md-4"> 
+            <label class="col control-label" for="8radios">Question 8</label>
+            <div class="col"> 
               <label class="radio-inline" for="8radios-0">
                 <input type="radio" name="8radios" id="8radios-0" value="1" checked="checked">
                 1
@@ -265,10 +248,9 @@
               </label>
             </div>
           </div>
-          <!-- Multiple Radios (inline) -->
           <div class="form-group">
-            <label class="col-md-4 control-label" for="9radios">Question 9</label>
-            <div class="col-md-4"> 
+            <label class="col control-label" for="9radios">Question 9</label>
+            <div class="col"> 
               <label class="radio-inline" for="9radios-0">
                 <input type="radio" name="9radios" id="9radios-0" value="1" checked="checked">
                 1
@@ -291,64 +273,55 @@
               </label>
             </div>
           </div>
-         
-<!-- Multiple Radios (inline) -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="10radios">Question 10</label>
-  <div class="col-md-4"> 
-    <label class="radio-inline" for="10radios-0">
-      <input type="radio" name="10radios" id="10radios-0" value="1" checked="checked">
-      1
-    </label> 
-    <label class="radio-inline" for="10radios-1">
-      <input type="radio" name="10radios" id="10radios-1" value="2">
-      2
-    </label> 
-    <label class="radio-inline" for="10radios-2">
-      <input type="radio" name="10radios" id="10radios-2" value="3">
-      3
-    </label> 
-    <label class="radio-inline" for="10radios-3">
-      <input type="radio" name="10radios" id="10radios-3" value="4">
-      4
-    </label>
-    <label class="radio-inline" for="10radios-4">
-      <input type="radio" name="10radios" id="10radios-4" value="5">
-      5
-    </label>
-  </div>
-</div>
-
-<div class="form-group">
-  <div class="col-md-4">
-    <button type='submit' id="singlebutton" name="singlebutton" class="btn btn-primary">Find Friend</button>
-  </div>
-</div>
-
+          <div class="form-group">
+            <label class="col control-label" for="10radios">Question 10</label>
+            <div class="col"> 
+              <label class="radio-inline" for="10radios-0">
+                <input type="radio" name="10radios" id="10radios-0" value="1" checked="checked">
+                1
+              </label> 
+              <label class="radio-inline" for="10radios-1">
+                <input type="radio" name="10radios" id="10radios-1" value="2">
+                2
+              </label> 
+              <label class="radio-inline" for="10radios-2">
+                <input type="radio" name="10radios" id="10radios-2" value="3">
+                3
+              </label> 
+              <label class="radio-inline" for="10radios-3">
+                <input type="radio" name="10radios" id="10radios-3" value="4">
+                4
+              </label>
+              <label class="radio-inline" for="10radios-4">
+                <input type="radio" name="10radios" id="10radios-4" value="5">
+                5
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+        <div class="col">
+          <button type='submit' id="singlebutton" name="singlebutton" class="btn btn-primary">Find Friend</button>
+        </div>
+      </div>
         </fieldset>
       </form>
       </div>
-      
-        
-
+      <div class="friends">
+        </div>
       <footer class="footer">
         <p>© 2019</p>
       </footer>
 
-    </div> <!-- /container -->
-  
-
+    </div> 
 </body>
 <script>
 $("form").on("submit", (event)=>{
 event.preventDefault()
-console.log(event)
 scores=[]
 // for loop to grab the inputs by name
 for (var i = 1; i< 11; i++){
   scores.push($(`input[name=${i}radios]:checked`).val())
 }
-console.log(scores)
 
 var newFriend = {
       name: $("#name").val().trim(),
@@ -358,11 +331,20 @@ var newFriend = {
 
     // after i get the data's i'll hide the form and display the matches sorted by closest
 
-  $.ajax({ url: "/api/friends", method: "POST" , data:newFriend}).then(function() {
-      // res.redirect("/")
-      console.log("success");
-      // this doesn't work yet
-      // $(".form").hide()
+  $.ajax({ url: "/api/friends", method: "POST" , data:newFriend}).then(function(res) {
+      // because I have added the data property differential to sort the array, rather than res.redirect("/") 
+      // to display frineds I simply hide the survey so that I can post the sorted friends here
+      res.forEach(v=>{
+        var friendList = $(".friends");
+        var newFriend = $("<li class='list-group-item mt-4'>");
+          newFriend.append(
+          // $("<h2>").text("ID: " + newFriend[i].id),
+          $("<h5>").text("Name: " + v.name),
+          $("<h5>").text("Image link: " + v.image),
+          $("<h5>").text(`Compatibility: ${100-v.differential*2.5}%`),
+        );
+        friendList.append(newFriend);})
+      $(".form").hide()
     });
 })
 </script>
