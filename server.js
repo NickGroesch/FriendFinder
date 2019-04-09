@@ -9,10 +9,8 @@ app.use(express.json());
 app.use(express.static("public"));
 // get routes from the routing files
 require("./app/routing/apiRoutes.js")(app);
-// require("./app/routing/htmlRoutes.js")(app);
+// it's helpful for me to remember both ways to set up the app routes
 var htmlroutes = require("./app/routing/htmlRoutes");
-// console.log(htmlroutes);
-
 htmlroutes(app);
 // set the listener
 app.listen(PORT, () => {

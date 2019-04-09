@@ -7,12 +7,15 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <title>Friend Finder Survey</title>
-<!-- link to bootstrap cdn instead of these wierd ones -->
-    <!-- Bootstrap core CSS -->
-    <link href="../../css/editor.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="narrow-jumbotron.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>*{text-align: center} 
+    /* form{ display: inline-block} */
+    /* .centered {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;} */
+ /* input{margin:auto} */
+  </style>
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -341,11 +344,11 @@ $("form").on("submit", (event)=>{
 event.preventDefault()
 console.log(event)
 scores=[]
+// for loop to grab the inputs by name
 for (var i = 1; i< 11; i++){
   scores.push($(`input[name=${i}radios]:checked`).val())
 }
-// //scores.push($("input[type='radio']:checked").val())
-console.log(scores)//$(".10radios").val());
+console.log(scores)
 
 var newFriend = {
       name: $("#name").val().trim(),
@@ -353,11 +356,13 @@ var newFriend = {
       scores: scores
     };
 
+    // after i get the data's i'll hide the form and display the matches sorted by closest
 
   $.ajax({ url: "/api/friends", method: "POST" , data:newFriend}).then(function() {
       // res.redirect("/")
       console.log("success");
-      
+      // this doesn't work yet
+      // $(".form").hide()
     });
 })
 </script>

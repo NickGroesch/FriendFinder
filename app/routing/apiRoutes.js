@@ -1,5 +1,6 @@
 // we need to connect to the database if we're gonna save and evaluate data
 var mysql = require("mysql");
+// //Friend Finder rhetorically asks, what good is a connection if you don't connect?
 var connection = mysql.createConnection({
   host: "localhost",
   port: 8889,
@@ -9,49 +10,68 @@ var connection = mysql.createConnection({
 });
 console.log("connected to mysql");
 
-// //Friend Finder rhetorically asks, what good is a connection if you don't connect?
-// connection.connect(function(err) {
-//     if (err) {
-//       console.error("error connecting: " + err.stack);
-//       return;
-//     }
-//     console.log("connected as id " + connection.threadId);
-//   });
-
 // // Routing
 module.exports = function(app) {
+  // get route displays all profiles
   app.get("/api/friends", (req, res) =>
-    // get all profiles
     connection.query("select * from profiles", (err, sult) => res.json(sult))
   );
-  app.post("/api/friends", (req, res) => {
-    console.log(req.body);
 
-    connection.query(
-      "Insert into profiles (name, image, scores) values (?,?,?)",
-      [req.body.name, req.body.image, req.body.scores.toString()]
-    );
-    console.log(req.params);
+  // post route handles friend matching and database insertion
+  app.post("/api/friends", (req, res) => {
+    var surveyUser = req.body;
+    var userScore = surveyUser.scores.join("");
+    console.log("userScore", userScore);
+
+    // connection.query(
+    //   "Insert into profiles (name, image, scores) values (?,?,?)",
+    //   [req.body.name, req.body.image, req.body.scores.toString()]
+    // );
+
     var potentialFriends = {};
     connection.query("select * from profiles", (err, sult) => {
-      //res.json(sult)
+      // console.log("all from profiles", sult);
+      sult.forEach((v, i) => (potentialFriends[i] = v));
+      console.log(potentialFriends);
 
-      sult.forEach(element, index => {
-        var dif = 0;
-        var scores = element.scores.split(",");
-        scores.forEach(item, i => {
-          if (item[i] != req.body.scores[i]) {
-            dif++;
-          }
-        });
-        potentialFriends[dif] = element;
+      for (prop in potentialFriends) {
+        var difference = 0;
+        var compScore = potentialFriends[prop].scores.split(",").join("");
+        console.log("compScore", compScore);
+        for (i = 0; i < compScore.length; i++) {
+          difference += Math.abs(
+            parseInt(compScore[i]) - parseInt(userScore[i])
+          );
+        }
+        potentialFriends[prop].differential = difference;
+        console.log(potentialFriends[prop].differential);
+      }
+      console.log(potentialFriends);
+      sortedFriends = [];
+      // for (x in potentialFriends){
+      sortedFriends = potentialFriends.sort((a, b) => {
+        return a.differential - b.differential;
       });
+      console.log(sortedFriends);
     });
-    // object get keys loop in to sort difference (represented the  key)
-    // take and save the user's survey
-    // keep the code as csv string
   });
 };
+
+// sult.forEach(element, index => {
+//   var dif = 0;
+//   var scores = element.scores.split(",");
+//   scores.forEach(item, i => {
+//     if (item[i] != req.body.scores[i]) {
+//       dif++;
+//     }
+//   });
+//   potentialFriends[dif] = element;
+//   });
+// });
+// object get keys loop in to sort difference (represented the  key)
+// take and save the user's survey
+// keep the code as csv string
+
 //     // evaluate the survey to show user the best friend(s)
 // function(evaluateMatch){
 // const bestMatch={

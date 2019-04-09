@@ -9,10 +9,9 @@
     <title>Friend Finder Main</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../css/editor.css" rel="stylesheet">
-
-    <!-- Custom styles for this template
-    <link href="narrow-jumbotron.css" rel="stylesheet"> -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<style>.container{text-align: center}</style>
+    
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -20,11 +19,9 @@
  
 
   </head>
-
   <body>
 
     <div class="container">
-      
 
       <div class="jumbotron">
         <h1 class="display-3"><b>Friend Finder&nbsp;</b></h1>
@@ -33,16 +30,13 @@
       </div>
 
       <div class="friends">
-        
-
-        
       </div>
 
       <footer class="footer">
         <p>© 2019</p>
       </footer>
 
-    </div> <!-- /container -->
+    </div> 
   
 
 </body>
@@ -51,21 +45,14 @@ function getAllFriends() {
   // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
   $.ajax({ url: "/api/friends", method: "GET" })
     .then(function(allFriends) {
-
-      console.log(allFriends);
-      console.log("------------------------------------");
-
       allFriends.forEach(v=>{
         var friendList = $(".friends");
-        
         var newFriend = $("<li class='list-group-item mt-4'>");
-
           newFriend.append(
           // $("<h2>").text("ID: " + newFriend[i].id),
           $("<h2>").text("Name: " + v.name),
           $("<h2>").text("Image link: " + v.image),
         );
-
         friendList.append(newFriend);
       })
     });
