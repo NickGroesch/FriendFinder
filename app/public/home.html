@@ -51,7 +51,7 @@ function getAllFriends() {
           newFriend.append(
           // $("<h2>").text("ID: " + newFriend[i].id),
           $("<h5>").text("Name: " + v.name),
-          $("<h5>").text("Image link: " + v.image),
+          $(`<img src="${v.image}" alt="Potential Friend" >`),
         );
         friendList.append(newFriend);
       })

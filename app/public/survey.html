@@ -23,7 +23,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
   <body>
-      
+          <!-- Modal code below inspired by https://embed.plnkr.co/plunk/ZDkUYz that I also used for Chi-BYOB-->
         <div class="modal-body" id="modalF">
           <div
             class="modal fade"
@@ -49,6 +49,7 @@
                   <div class="row">
                     <div class="col-md-12 modal_body_map">
                       <p id="modalFeedback"></p>
+                      <div id="image"></div>
                     </div>
                   </div>
                 </div>
@@ -356,14 +357,19 @@ scores=[]
 for (var i = 1; i< 11; i++){
   scores.push($(`input[name=${i}radios]:checked`).val())
 }
-
+// input validation
+if($("#name").val().trim()===""){
+  alert("Please fill out all forms")
+}else if($("#photoUrl").val().trim()===""){
+  alert("Please fill out all forms")
+}else{
 var newFriend = {
       name: $("#name").val().trim(),
       image: $("#photoUrl").val().trim(),
       scores: scores
     };
 
-    // after i get the data's i'll hide the form and display the matches sorted by closest
+  // after i get the data's i'll hide the form and display the matches sorted by closest
 
   $.ajax({ url: "/api/friends", method: "POST" , data:newFriend}).then(function(res) {
       // because I have added the data property differential to sort the array, rather than res.redirect("/") 
@@ -374,17 +380,20 @@ var newFriend = {
           newFriend.append(
           // $("<h2>").text("ID: " + newFriend[i].id),
           $("<h5>").text("Name: " + v.name),
-          $("<h5>").text("Image link: " + v.image),
+              $(`<img src="${v.image}" alt="Potential Friend" >`),
           $("<h5>").text(`Compatibility: ${100-v.differential*2.5}%`),
         );
         friendList.append(newFriend);})
       $(".form").hide()
+      // show the best match in the modal
       $("#myModal").modal("toggle")
       $("#modalFeedback").text(
-      `You matched best with ${res[0].name}. You are ${100-res[0].differential*2.5}% compatible! Here is their image: ${res[0].image}. Get out there and earn that W!`
+      `You matched best with ${res[0].name}. You are ${100-res[0].differential*2.5}% compatible! Get out there and earn that W!`
     );
     $("#myModalLabelF").text(`Your Best Match`);
+    $("#image").append($(`<img src="${res[0].image}" alt="Potential Friend" >`))
     });
+  }
 })
 </script>
 </html>
