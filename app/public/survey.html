@@ -20,26 +20,59 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
   <body>
-
+      
+        <div class="modal-body" id="modalF">
+          <div
+            class="modal fade"
+            id="myModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="myModalLabelF"
+          >
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="myModalLabelF"></h4>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-12 modal_body_map">
+                      <p id="modalFeedback"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     <div class="container">
       
       <div class="jumbotron">
         <h1 class="display-3"><b>Friend Finder&nbsp;</b></h1>
-        <p class="lead">Cras justo odio, Find yourself some friends.</p>
-        <p><a id="find" class="btn btn-lg btn-success" href="/home" role="button">See all Friends</a></p>
+        <p class="lead">Duty Calls, Find Yourself Some Squadmates.</p>
+        <p><a id="find" class="btn btn-lg btn-success" href="/home" role="button">See all Soldiers</a></p>
       </div>
 
       <!-- This is the Form -->
       <div class="form">
         <form class="form-horizontal" >
           <fieldset>
-          <legend>Friend Finder Survey</legend>
+          <legend>Let's find you a squad</legend>
           <div class="form-group">
             <label class="col control-label" for="textinput">Name</label>  
             <div class="col">
-            <input id="name" name="textinput" type="text" placeholder="This is your name" class="form-control input-md">
+            <input id="name" name="textinput" type="text" placeholder="This is where your name should go" class="form-control input-md">
             </div>
           </div>
           <div class="form-group">
@@ -48,8 +81,9 @@
             <input id="photoUrl" name="textinput" type="text" placeholder="Url link here" class="form-control input-md">
             </div>
           </div>
+          <h6>Select 5 to totally agree, 1 to disagree.</h4>
           <div class="form-group align-self-center">
-            <label class="col control-label" for="1radios">Question 1</label>
+            <label class="col control-label" for="1radios">I never leave a squadmate down.</label>
             <div class="col "> 
               <label class="radio-inline" for="1radios-0">
                 <input type="radio" name="1radios" id="1radios-0" value="1" checked="checked">
@@ -74,7 +108,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col control-label" for="2radios">Question 2</label>
+            <label class="col control-label" for="2radios">Let's skulk around the edges and let them take care of each other.</label>
             <div class="col"> 
               <label class="radio-inline" for="2radios-0">
                 <input type="radio" name="2radios" id="2radios-0" value="1" checked="checked">
@@ -99,7 +133,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col control-label" for="3radios">Question 3</label>
+            <label class="col control-label" for="3radios">I'm just here for the paint cans.</label>
             <div class="col"> 
               <label class="radio-inline" for="3radios-0">
                 <input type="radio" name="3radios" id="3radios-0" value="1" checked="checked">
@@ -124,7 +158,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col control-label" for="4radios">Question 4</label>
+            <label class="col control-label" for="4radios">It's more important to win than complete a challenge.</label>
             <div class="col"> 
               <label class="radio-inline" for="4radios-0">
                 <input type="radio" name="4radios" id="4radios-0" value="1" checked="checked">
@@ -149,7 +183,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col control-label" for="5radios">Question 5</label>
+            <label class="col control-label" for="5radios">Jump first, decide where to land later.</label>
             <div class="col"> 
               <label class="radio-inline" for="5radios-0">
                 <input type="radio" name="5radios" id="5radios-0" value="1" checked="checked">
@@ -174,7 +208,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col control-label" for="6radios">Question 6</label>
+            <label class="col control-label" for="6radios">I share gear-- but never my sniper rifle.</label>
             <div class="col"> 
               <label class="radio-inline" for="6radios-0">
                 <input type="radio" name="6radios" id="6radios-0" value="1" checked="checked">
@@ -199,7 +233,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col control-label" for="7radios">Question 7</label>
+            <label class="col control-label" for="7radios">It's better to go down in a blaze of glory.</label>
             <div class="col"> 
               <label class="radio-inline" for="7radios-0">
                 <input type="radio" name="7radios" id="7radios-0" value="1" checked="checked">
@@ -224,7 +258,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col control-label" for="8radios">Question 8</label>
+            <label class="col control-label" for="8radios">Let's take the chopper.</label>
             <div class="col"> 
               <label class="radio-inline" for="8radios-0">
                 <input type="radio" name="8radios" id="8radios-0" value="1" checked="checked">
@@ -249,7 +283,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col control-label" for="9radios">Question 9</label>
+            <label class="col control-label" for="9radios">We should hold the fort.</label>
             <div class="col"> 
               <label class="radio-inline" for="9radios-0">
                 <input type="radio" name="9radios" id="9radios-0" value="1" checked="checked">
@@ -274,7 +308,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col control-label" for="10radios">Question 10</label>
+            <label class="col control-label" for="10radios">Unit cohesion is a real thing.</label>
             <div class="col"> 
               <label class="radio-inline" for="10radios-0">
                 <input type="radio" name="10radios" id="10radios-0" value="1" checked="checked">
@@ -300,7 +334,7 @@
           </div>
           <div class="form-group">
         <div class="col">
-          <button type='submit' id="singlebutton" name="singlebutton" class="btn btn-primary">Find Friend</button>
+          <button type='submit' id="singlebutton" name="singlebutton" class="btn btn-primary">Find Your Best Match</button>
         </div>
       </div>
         </fieldset>
@@ -345,6 +379,11 @@ var newFriend = {
         );
         friendList.append(newFriend);})
       $(".form").hide()
+      $("#myModal").modal("toggle")
+      $("#modalFeedback").text(
+      `You matched best with ${res[0].name}. You are ${100-res[0].differential*2.5}% compatible! Here is their image: ${res[0].image}. Get out there and earn that W!`
+    );
+    $("#myModalLabelF").text(`Your Best Match`);
     });
 })
 </script>

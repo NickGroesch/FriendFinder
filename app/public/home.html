@@ -24,9 +24,9 @@
     <div class="container">
 
       <div class="jumbotron">
-        <h1 class="display-3"><b>Friend Finder&nbsp;</b></h1>
-        <p class="lead">Cras justo odio, Find yourself some friends.</p>
-        <p><a id="find" class="btn btn-lg btn-success" href="/survey" role="button">Find a Friend</a></p>
+        <h1 class="display-3"><b>Blackout Friend Finder&nbsp;</b></h1>
+        <p class="lead">Duty Calls, Find Yourself Some Squadmates</p>
+        <p><a id="find" class="btn btn-lg btn-success" href="/survey" role="button">Find a Squadmate</a></p>
       </div>
 
       <div class="friends">
@@ -50,8 +50,8 @@ function getAllFriends() {
         var newFriend = $("<li class='list-group-item mt-4'>");
           newFriend.append(
           // $("<h2>").text("ID: " + newFriend[i].id),
-          $("<h2>").text("Name: " + v.name),
-          $("<h2>").text("Image link: " + v.image),
+          $("<h5>").text("Name: " + v.name),
+          $("<h5>").text("Image link: " + v.image),
         );
         friendList.append(newFriend);
       })
