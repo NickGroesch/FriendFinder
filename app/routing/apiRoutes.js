@@ -1,13 +1,18 @@
 // we need to connect to the database if we're gonna save and evaluate data
 var mysql = require("mysql");
 // //Friend Finder rhetorically asks, what good is a connection if you don't connect?
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 8889,
-  user: "root",
-  password: "root",
-  database: "ff_db"
-});
+var connection;
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    port: 8889,
+    user: "root",
+    password: "root",
+    database: "ff_db"
+  });
+}
 console.log("connected to mysql");
 
 // // Routing
