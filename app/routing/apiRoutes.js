@@ -10,7 +10,7 @@ if (process.env.JAWSDB_URL) {
     port: process.env.MYSQLPORT,
     user: process.env.MYSQLUSER,
     password: process.env.MYSQLPASSWORD,
-    database: "ff_db"
+    database: process.env.MYSQLDATABASE
   });
 }
 console.log("connected to mysql");

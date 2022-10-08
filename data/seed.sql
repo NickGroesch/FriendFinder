@@ -1,4 +1,4 @@
-use ff_db;
+use railway;
 
 insert into profiles( name, image, scores) values
 ("mr 5s", "url", "5,5,5,5,5,5,5,5,5,5"),
