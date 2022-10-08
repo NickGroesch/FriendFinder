@@ -13,7 +13,7 @@ require("./app/routing/apiRoutes.js")(app);
 var htmlroutes = require("./app/routing/htmlRoutes");
 htmlroutes(app);
 // set the listener
-app.listen(PORT, () => {
+app.listen(PORT, "0:0:0:0", () => {
   console.log("Friend Finder listening on port " + PORT);
   // console.log(app);
 });
