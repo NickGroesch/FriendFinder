@@ -6,17 +6,17 @@ if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
   connection = mysql.createConnection({
-    host: "localhost",
-    port: 8889,
-    user: "root",
-    password: "root",
-    database: "ff_db"
+    host: process.env.MYSQLHOST,
+    port: process.env.MYSQLPORT,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE
   });
 }
 console.log("connected to mysql");
 
 // // Routing
-module.exports = function(app) {
+module.exports = function (app) {
   // get route displays all profiles
   app.get("/api/friends", (req, res) =>
     connection.query("select * from profiles", (err, sult) => res.json(sult))
